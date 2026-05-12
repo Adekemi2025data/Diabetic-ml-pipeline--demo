@@ -1,1 +1,51 @@
+# -----------------------------
+# DATA (tracked by DVC, not Git)
+# -----------------------------
+# Ignore actual data files, but allow DVC pointer files (*.dvc)
+data/**/*.csv
+data/**/*.parquet
+data/**/*.json.gz
+
+# -----------------------------
+# MODELS (tracked by DVC)
+# -----------------------------
+models/*.pkl
+models/*.joblib
+models/*.h5
+models/*.pt
+models/*.onnx
+
+# -----------------------------
+# METRICS (generated outputs)
+# -----------------------------
+metrics/
+
+# -----------------------------
+# PYTHON BUILD ARTIFACTS
+# -----------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# -----------------------------
+# VIRTUAL ENVIRONMENTS
+# -----------------------------
+.venv/
+venv/
+env/
+
+# -----------------------------
+# JUPYTER NOTEBOOKS
+# -----------------------------
+.ipynb_checkpoints/
+
+# -----------------------------
+# OS / EDITOR FILES
+# -----------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
 /diabetes.csv
