@@ -42,8 +42,9 @@ jobs:
   # Job 2: Train and evaluate diabetes model
   # ──────────────────────────────────────────────
   train:
-    name: Train Diabetes Model
-    runs-on: ubuntu-latest
+     -  name: Train diabetes model
+        run: python src/train.py
+
     needs: test  # only runs if tests pass
 
     steps:
