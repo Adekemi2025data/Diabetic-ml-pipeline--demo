@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/user/Desktop/diabetic/ml-pipeline-demo/mlruns/998103601696967331/603127d3983c40078b7ac2d4615a7d70/artifacts
+end_time: 1778693010054
+entry_point_name: ''
+experiment_id: '998103601696967331'
+lifecycle_stage: active
+run_id: 603127d3983c40078b7ac2d4615a7d70
+run_name: sedate-doe-101
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1778693009616
+status: 3
+tags: []
+user_id: user

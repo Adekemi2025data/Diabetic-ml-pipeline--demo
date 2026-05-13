@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/user/Desktop/diabetic/ml-pipeline-demo/mlruns/998103601696967331/310bddf64893469b9958f251519ef4c7/artifacts
+end_time: 1778693002743
+entry_point_name: ''
+experiment_id: '998103601696967331'
+lifecycle_stage: active
+run_id: 310bddf64893469b9958f251519ef4c7
+run_name: fearless-duck-344
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1778693002573
+status: 3
+tags: []
+user_id: user

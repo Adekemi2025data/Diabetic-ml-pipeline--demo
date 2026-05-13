@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/user/Desktop/diabetic/ml-pipeline-demo/mlruns/998103601696967331/c96d809fc9ab4420a5d9dc86a911bcff/artifacts
+end_time: 1778693007357
+entry_point_name: ''
+experiment_id: '998103601696967331'
+lifecycle_stage: active
+run_id: c96d809fc9ab4420a5d9dc86a911bcff
+run_name: debonair-shoat-333
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1778693007027
+status: 3
+tags: []
+user_id: user

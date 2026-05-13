@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/user/Desktop/diabetic/ml-pipeline-demo/mlruns/998103601696967331/529b1fdbbb134e5bb44eaf41c0f1c946/artifacts
+end_time: 1778693010576
+entry_point_name: ''
+experiment_id: '998103601696967331'
+lifecycle_stage: active
+run_id: 529b1fdbbb134e5bb44eaf41c0f1c946
+run_name: resilient-mink-438
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1778693010131
+status: 3
+tags: []
+user_id: user

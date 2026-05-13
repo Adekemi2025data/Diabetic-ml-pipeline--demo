@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/user/Desktop/diabetic/ml-pipeline-demo/mlruns/998103601696967331/1ae0b39e72374a46bc054b3aa634c955/artifacts
+end_time: 1778693003755
+entry_point_name: ''
+experiment_id: '998103601696967331'
+lifecycle_stage: active
+run_id: 1ae0b39e72374a46bc054b3aa634c955
+run_name: puzzled-hen-626
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1778693003541
+status: 3
+tags: []
+user_id: user

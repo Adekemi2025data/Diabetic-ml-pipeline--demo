@@ -9,23 +9,11 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
-# Add src to path so we can import preprocessing
+# Add src to path so we can import preprocessing + config loader
 sys.path.insert(0, os.path.dirname(__file__))
 from preprocessing import DiabetesPreprocessor
+from config_loader import load_config
 
-# ---------------------------------------------------------
-# CONFIGURATION
-# ---------------------------------------------------------
-CONFIG = {
-    "data_url": "https://raw.githubusercontent.com/plotly/datasets/master/diabetes.csv",
-    "target": "Outcome",
-    "test_size": 0.2,
-    "random_state": 42,
-    "n_estimators": 200,
-    "max_depth": 8,
-    "min_accuracy": 0.60,
-    "min_f1": 0.55,
-}
 
 # ---------------------------------------------------------
 # LOAD DATA
@@ -36,15 +24,26 @@ def load_data(url):
     print(f"Loaded {len(df)} rows, {len(df.columns)} columns")
     return df
 
+
 # ---------------------------------------------------------
 # TRAINING PIPELINE
 # ---------------------------------------------------------
 def train_model(config=None):
+    # Load YAML config if not provided
     if config is None:
-        config = CONFIG
+        config = load_config()
+
+    data_url = config["data"]["raw_path"]
+    target = config["data"]["target_column"]
+    test_size = config["preprocessing"]["test_size"]
+    random_state = config["preprocessing"]["random_state"]
+
+    model_params = config["model"]["params"]
+    min_accuracy = config["training"]["min_accuracy"]
+    min_f1 = config["training"]["min_f1"]
 
     # Load raw data
-    df = load_data(config["data_url"])
+    df = load_data(data_url)
 
     # Initialize preprocessor
     prep = DiabetesPreprocessor()
@@ -58,13 +57,13 @@ def train_model(config=None):
     print(f"Data quality: {quality['total_nulls']} nulls, {quality['duplicate_rows']} duplicates")
 
     # Split
-    X = df_clean.drop(columns=[config["target"]])
-    y = df_clean[config["target"]]
+    X = df_clean.drop(columns=[target])
+    y = df_clean[target]
 
     X_train, X_test, y_train, y_test = train_test_split(
         X, y,
-        test_size=config["test_size"],
-        random_state=config["random_state"],
+        test_size=test_size,
+        random_state=random_state,
         stratify=y
     )
 
@@ -77,11 +76,7 @@ def train_model(config=None):
 
     # Train model
     print("Training Random Forest...")
-    model = RandomForestClassifier(
-        n_estimators=config["n_estimators"],
-        max_depth=config["max_depth"],
-        random_state=config["random_state"]
-    )
+    model = RandomForestClassifier(**model_params)
     model.fit(X_train_scaled, y_train)
 
     # Evaluate
@@ -104,10 +99,10 @@ def train_model(config=None):
     print(f"  F1 Score:  {metrics['f1_score']}")
 
     # Threshold checks
-    if metrics["accuracy"] < config["min_accuracy"]:
-        print(f"\nWARNING: Accuracy {metrics['accuracy']} is below threshold {config['min_accuracy']}")
-    if metrics["f1_score"] < config["min_f1"]:
-        print(f"\nWARNING: F1 {metrics['f1_score']} is below threshold {config['min_f1']}")
+    if metrics["accuracy"] < min_accuracy:
+        print(f"\nWARNING: Accuracy {metrics['accuracy']} is below threshold {min_accuracy}")
+    if metrics["f1_score"] < min_f1:
+        print(f"\nWARNING: F1 {metrics['f1_score']} is below threshold {min_f1}")
 
     # Save model + scaler
     os.makedirs("models", exist_ok=True)
@@ -135,17 +130,19 @@ def train_model(config=None):
 
     return metrics
 
+
 # ---------------------------------------------------------
 # MAIN EXECUTION
 # ---------------------------------------------------------
 if __name__ == "__main__":
-    metrics = train_model()
+    config = load_config()
+    metrics = train_model(config)
 
-    if metrics["accuracy"] < CONFIG["min_accuracy"]:
+    if metrics["accuracy"] < config["training"]["min_accuracy"]:
         print("\nFAILED: Accuracy below threshold")
         sys.exit(1)
 
-    if metrics["f1_score"] < CONFIG["min_f1"]:
+    if metrics["f1_score"] < config["training"]["min_f1"]:
         print("\nFAILED: F1 score below threshold")
         sys.exit(1)
 

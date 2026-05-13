@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/user/Desktop/diabetic/ml-pipeline-demo/mlruns/998103601696967331/36fd6e66a0ab45fc8d640195f6abcb5d/artifacts
+end_time: 1778693006967
+entry_point_name: ''
+experiment_id: '998103601696967331'
+lifecycle_stage: active
+run_id: 36fd6e66a0ab45fc8d640195f6abcb5d
+run_name: resilient-sheep-767
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1778693006651
+status: 3
+tags: []
+user_id: user

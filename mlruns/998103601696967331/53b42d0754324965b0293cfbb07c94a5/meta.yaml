@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/user/Desktop/diabetic/ml-pipeline-demo/mlruns/998103601696967331/53b42d0754324965b0293cfbb07c94a5/artifacts
+end_time: 1778693011935
+entry_point_name: ''
+experiment_id: '998103601696967331'
+lifecycle_stage: active
+run_id: 53b42d0754324965b0293cfbb07c94a5
+run_name: rogue-turtle-452
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1778693011390
+status: 3
+tags: []
+user_id: user

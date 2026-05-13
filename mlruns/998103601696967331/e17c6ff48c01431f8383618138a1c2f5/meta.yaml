@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/user/Desktop/diabetic/ml-pipeline-demo/mlruns/998103601696967331/e17c6ff48c01431f8383618138a1c2f5/artifacts
+end_time: 1778693011332
+entry_point_name: ''
+experiment_id: '998103601696967331'
+lifecycle_stage: active
+run_id: e17c6ff48c01431f8383618138a1c2f5
+run_name: loud-zebra-567
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1778693010657
+status: 3
+tags: []
+user_id: user

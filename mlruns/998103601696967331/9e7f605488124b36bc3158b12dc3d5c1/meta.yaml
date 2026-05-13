@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/user/Desktop/diabetic/ml-pipeline-demo/mlruns/998103601696967331/9e7f605488124b36bc3158b12dc3d5c1/artifacts
+end_time: 1778693005805
+entry_point_name: ''
+experiment_id: '998103601696967331'
+lifecycle_stage: active
+run_id: 9e7f605488124b36bc3158b12dc3d5c1
+run_name: blushing-steed-782
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1778693005566
+status: 3
+tags: []
+user_id: user

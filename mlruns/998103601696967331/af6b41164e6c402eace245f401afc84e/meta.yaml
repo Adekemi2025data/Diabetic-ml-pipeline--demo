@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/user/Desktop/diabetic/ml-pipeline-demo/mlruns/998103601696967331/af6b41164e6c402eace245f401afc84e/artifacts
+end_time: 1778692704853
+entry_point_name: ''
+experiment_id: '998103601696967331'
+lifecycle_stage: active
+run_id: af6b41164e6c402eace245f401afc84e
+run_name: auspicious-deer-113
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1778692704377
+status: 3
+tags: []
+user_id: user

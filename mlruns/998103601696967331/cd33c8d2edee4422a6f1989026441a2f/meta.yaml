@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/user/Desktop/diabetic/ml-pipeline-demo/mlruns/998103601696967331/cd33c8d2edee4422a6f1989026441a2f/artifacts
+end_time: 1778693004013
+entry_point_name: ''
+experiment_id: '998103601696967331'
+lifecycle_stage: active
+run_id: cd33c8d2edee4422a6f1989026441a2f
+run_name: popular-vole-694
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1778693003816
+status: 3
+tags: []
+user_id: user

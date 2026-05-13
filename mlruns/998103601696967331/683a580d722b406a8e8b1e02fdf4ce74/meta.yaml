@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/user/Desktop/diabetic/ml-pipeline-demo/mlruns/998103601696967331/683a580d722b406a8e8b1e02fdf4ce74/artifacts
+end_time: 1778693005487
+entry_point_name: ''
+experiment_id: '998103601696967331'
+lifecycle_stage: active
+run_id: 683a580d722b406a8e8b1e02fdf4ce74
+run_name: tasteful-vole-146
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1778693005249
+status: 3
+tags: []
+user_id: user
