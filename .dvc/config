@@ -1,1 +1,4 @@
-
+[core]
+    remote = myremote
+['remote "myremote"']
+    url = C:/Users/user/Desktop/dvc-storage

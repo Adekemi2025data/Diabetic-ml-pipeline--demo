@@ -4,5 +4,6 @@ __pycache__/
 data/**/*.csv
 data/**/*.parquet
 data/**/*.json
-models/
+models/*
+!models/*.dvc
 metrics/
