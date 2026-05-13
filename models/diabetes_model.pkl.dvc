@@ -1,0 +1,5 @@
+outs:
+- md5: 6ad7421f9629545a5d27a8f1c86acc75
+  size: 1969130
+  hash: md5
+  path: diabetes_model.pkl
