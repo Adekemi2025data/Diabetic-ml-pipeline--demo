@@ -49,6 +49,7 @@ def train_model(config):
 
     X_train, X_test, y_train, y_test = split_data(df_clean, config)
 
+    # FIXED: use "parameters" (not "params")
     params = config["model"]["parameters"]
     model = RandomForestClassifier(**params)
 
@@ -71,7 +72,7 @@ def train_model(config):
         mlflow.log_metric("total_rows", quality["total_rows"])
 
         # Save model
-        model_path = config["model"]["output_path"]
+        model_path = config["training"]["output_path"]
         os.makedirs(os.path.dirname(model_path), exist_ok=True)
         joblib.dump(model, model_path)
         mlflow.log_artifact(model_path)
