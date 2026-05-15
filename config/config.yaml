@@ -5,6 +5,15 @@ data:
   random_state: 42
 
 model:
+  type: "RandomForestClassifier"
+  parameters:
+    n_estimators: 200
+    max_depth: 8
+    random_state: 42
+
+training:
+  min_accuracy: 0.60
+  min_f1: 0.55
   output_path: "models/diabetes_model.pkl"
   parameters:
     n_estimators: 100
@@ -13,4 +22,11 @@ model:
 
 mlflow:
   tracking_uri: "file:./mlruns"
+  experiment_name: "diabetes-prediction"
+
+sweep:
+  parameters:
+    n_estimators: [50, 100, 200]
+    max_depth: [4, 6, 8]
+    min_samples_split: [2, 4, 6]
   experiment_name: "diabetes_experiment"

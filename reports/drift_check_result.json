@@ -1,0 +1,13 @@
+{
+  "total_features": 9,
+  "drifted_features": 5,
+  "drift_share": 0.556,
+  "status": "critical",
+  "drifted_feature_names": [
+    "Glucose",
+    "BloodPressure",
+    "SkinThickness",
+    "BMI",
+    "Age"
+  ]
+}

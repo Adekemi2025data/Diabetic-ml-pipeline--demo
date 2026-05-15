@@ -1,8 +1,0 @@
-artifact_location: file:///C:/Users/user/Desktop/diabetic/ml-pipeline-demo/mlruns/998103601696967331
-creation_time: 1778692703927
-experiment_id: '998103601696967331'
-last_update_time: 1778692703927
-lifecycle_stage: active
-name: diabetes-prediction
-trace_location: null
-workspace: default
