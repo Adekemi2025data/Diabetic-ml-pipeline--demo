@@ -4,9 +4,9 @@ import mlflow
 experiment = mlflow.get_experiment_by_name("diabetes-prediction")
 
 if experiment is None:
-    raise ValueError("Experiment 'diabetes-prediction' not found. Run your experiments first.")
+    raise ValueError("Experiment 'diabetes-prediction' not found. Run experiments first.")
 
-# Search for all completed runs, sorted by F1 score (descending)
+# Search for all completed runs, sorted by F1 score
 runs = mlflow.search_runs(
     experiment_ids=[experiment.experiment_id],
     filter_string="status = 'FINISHED'",
@@ -23,7 +23,7 @@ for i, row in runs.head(5).iterrows():
     print(f"  Accuracy: {row['metrics.accuracy']:.4f}")
     print(f"  AUC-ROC:  {row['metrics.auc_roc']:.4f}")
 
-# Identify the best run
+# Find the best run
 best_run = runs.iloc[0]
 print(f"\n{'=' * 80}")
 print("BEST MODEL")
@@ -34,7 +34,7 @@ print(f"F1 Score:   {best_run['metrics.f1_score']:.4f}")
 print(f"Accuracy:   {best_run['metrics.accuracy']:.4f}")
 print(f"AUC-ROC:    {best_run['metrics.auc_roc']:.4f}")
 
-# Bonus: summarize performance by model type
+# Bonus: show how metrics vary by model type
 print(f"\n{'=' * 80}")
 print("Average F1 Score by Model Type:")
 print("=" * 80)

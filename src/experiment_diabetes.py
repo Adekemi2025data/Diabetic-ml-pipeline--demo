@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import mlflow
 import mlflow.sklearn
-import sys
 import json
 import os
 from sklearn.model_selection import train_test_split
@@ -14,14 +13,36 @@ from sklearn.metrics import (
     f1_score, roc_auc_score
 )
 
-# ─── Configuration ───────────────────────────────────────────────
+# ────────────────────────────────────────────────────────────────
+# Data Quality Check Function
+# ────────────────────────────────────────────────────────────────
+def check_data_quality(df, numeric_columns):
+    """Return a dictionary of data quality metrics."""
+    report = {
+        "total_rows": len(df),
+        "total_nulls": int(df.isnull().sum().sum()),
+        "null_percentage": round(df.isnull().sum().sum() / (len(df) * len(df.columns)) * 100, 2),
+        "duplicate_rows": int(df.duplicated().sum()),
+    }
+
+    for col in numeric_columns:
+        if col in df.columns:
+            report[f"{col}_min"] = float(df[col].min())
+            report[f"{col}_max"] = float(df[col].max())
+
+    return report
+
+
+# ────────────────────────────────────────────────────────────────
+# Configuration for Diabetes ML Experiments
+# ────────────────────────────────────────────────────────────────
 config = {
-    "model_type": "logistic_regression",   # logistic_regression, random_forest, gradient_boosting
+    "model_type": "logistic_regression",
     "test_size": 0.2,
     "random_state": 42,
-    "handle_missing": "median",            # median, drop
+    "handle_missing": "median",
     "scale_features": True,
-    "features_to_drop": [],                # columns to exclude from training
+    "features_to_drop": [],
 
     # Model-specific hyperparameters
     "lr_C": 1.0,
@@ -36,25 +57,27 @@ config = {
 # Load and prepare diabetes dataset
 # ────────────────────────────────────────────────────────────────
 def load_and_prepare_data(config):
-    """Load the diabetes dataset and prepare it for MLflow experiments."""
-
     url = "https://raw.githubusercontent.com/plotly/datasets/master/diabetes.csv"
     print("Loading diabetes dataset...")
     df = pd.read_csv(url)
     print(f"Loaded {len(df)} rows, {len(df.columns)} columns")
+
+    # Identify numeric columns
+    numeric_cols = df.columns.drop("Outcome").tolist()
+
+    # Data quality check BEFORE cleaning
+    quality = check_data_quality(df, numeric_cols)
+    print(f"Data quality: {quality['total_nulls']} nulls, {quality['duplicate_rows']} duplicates")
 
     # Drop user-specified columns
     if config["features_to_drop"]:
         df = df.drop(columns=config["features_to_drop"], errors="ignore")
         print(f"Dropped features: {config['features_to_drop']}")
 
-    # Identify numeric columns
-    numeric_cols = df.columns.drop("Outcome").tolist()
-
-    # Handle missing values
+    # Handle missing values (zeros = missing in diabetes dataset)
     if config["handle_missing"] == "median":
         for col in numeric_cols:
-            df[col] = df[col].replace(0, np.nan)  # diabetes dataset uses zeros as missing
+            df[col] = df[col].replace(0, np.nan)
             df[col] = df[col].fillna(df[col].median())
         print("Filled missing values with median (after replacing zeros)")
     elif config["handle_missing"] == "drop":
@@ -65,7 +88,6 @@ def load_and_prepare_data(config):
     # No categorical columns in diabetes dataset
     categorical_cols = []
 
-    # Separate features and target
     X = df.drop(columns=["Outcome"])
     y = df["Outcome"]
 
@@ -157,7 +179,16 @@ def run_experiment(config):
         # Log model
         mlflow.sklearn.log_model(model, "model")
 
-        # Log config snapshot
+        # Get run_id BEFORE registering model
+        run_id = mlflow.active_run().info.run_id
+
+        # Register the model in MLflow Model Registry
+        result = mlflow.register_model(
+            model_uri=f"runs:/{run_id}/model",
+            name="diabetes-predictor"
+        )
+
+        # Save config snapshot
         config_path = "config_snapshot.json"
         with open(config_path, "w") as f:
             json.dump(config, f, indent=2)
@@ -174,8 +205,8 @@ def run_experiment(config):
         print(f"AUC-ROC:   {auc:.4f}")
         print("="*50)
 
-        run_id = mlflow.active_run().info.run_id
         print(f"\nMLflow Run ID: {run_id}")
+        print("Model registered as: diabetes-predictor")
 
     return run_id
 

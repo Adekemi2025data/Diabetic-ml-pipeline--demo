@@ -7,3 +7,21 @@ data/**/*.json
 models/*
 !models/*.dvc
 metrics/
+echo "# Data files
+*.csv
+*.db
+mlruns/
+reports/
+
+# MLflow artifacts
+mlflow.db
+src/mlflow.db
+src/mlruns/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+.venv/
+venv/" >> .gitignore
