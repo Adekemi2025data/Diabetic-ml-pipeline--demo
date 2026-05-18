@@ -59,7 +59,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Train diabetes model
-        run: python src/train_diabetes.py
+        run: python src/train.py
 
       - name: Upload diabetes metrics
         if: always()

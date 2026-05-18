@@ -1,0 +1,23 @@
+{
+  "required_features": [
+    "Age",
+    "BMI",
+    "Glucose",
+    "BloodPressure",
+    "Pregnancies"
+  ],
+  "types": {
+    "Age": "integer",
+    "BMI": "float",
+    "Glucose": "float",
+    "BloodPressure": "float",
+    "Pregnancies": "integer"
+  },
+  "ranges": {
+    "Age": [18, 100],
+    "BMI": [10, 60],
+    "Glucose": [50, 300],
+    "BloodPressure": [40, 200],
+    "Pregnancies": [0, 20]
+  }
+}
